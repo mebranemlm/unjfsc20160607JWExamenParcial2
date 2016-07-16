@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+<title>Principal</title>
+</h:head>
+<h:body>
+<h:form>
+<center>
+<table border="1">
+<tr>
+	<th colspan="2">
+		Menú Principal MERCEDES BRANDÁN
+	</th>
+</tr>
+<tr>
+	<td >
+		<table border="1">
+			<tr>
+				<td>
+					<h:commandLink value="Insertar" action="INSERTAR" actionListener="#{AlumnoBean.llenaCombo}"></h:commandLink>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h:commandLink value="Buscar" action="BUSCAR" actionListener="#{AlumnoBean.llenaCombo}"></h:commandLink>
+				</td>
+			</tr>
+		</table>
+	</td>
+	<td>
+		<table>
+			<tr>
+				<td>
+				<h:graphicImage url="img/foto.jpg" width="200px"></h:graphicImage>
+				</td>
+			</tr>
+		</table>
+	</td>
+</tr>
+</table>
+</center>
+</h:form>
+<style>
+
+</style>
+
+
+</h:body>
+
+</html>

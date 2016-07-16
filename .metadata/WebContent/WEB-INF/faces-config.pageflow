@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14686872196150" configfile="/MERCEDES_BRANDAN/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" id="pf14686873337291" outlinks="pf14686873337293 pf146868737719011 pf146868737719012" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="principal.xhtml" id="pf14686873337296" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf14686873337293" path="/principal.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="xhtml/insertar.xhtml" id="pf146868737719013" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf146868737719011" path="/xhtml/insertar.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="xhtml/buscar.xhtml" id="pf146868737719014" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf146868737719012" path="/xhtml/buscar.xhtml"/>
+  <links id="pf14686873337293" target="pf14686873337296" source="pf14686873337291" outcome="PRINCIPAL"/>
+  <links id="pf146868737719011" target="pf146868737719013" source="pf14686873337291" outcome="INSERTAR"/>
+  <links id="pf146868737719012" target="pf146868737719014" source="pf14686873337291" outcome="BUSCAR"/>
+</pageflow:Pageflow>

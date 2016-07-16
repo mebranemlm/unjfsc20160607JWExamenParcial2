@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+<title>Principal</title>
+</h:head>
+<h:body>
+<h:form>
+<table border="1">
+<tr>
+	<th>ID Alumno: </th>
+	<td><h:inputText value="#{AlumnoBean.idAlumno}" id="idalumno" validator="#{AlumnoBean.validaId}"></h:inputText> </td>
+</tr>
+
+<tr>
+	<th>Nombres: </th>
+	<td><h:inputText  value="#{AlumnoBean.nombres}" id="nombre" validator="#{AlumnoBean.validaNombre}"></h:inputText> </td>
+</tr>
+
+
+<tr>
+	<th>Edad: </th>
+	<td><h:inputText value="#{AlumnoBean.edad}" id="edad" validator="#{AlumnoBean.validaEdad}"></h:inputText> </td>
+</tr>
+
+<tr>
+	<th>Talla: </th>
+	<td><h:inputText value="#{AlumnoBean.talla}"  id="talla" validator="#{AlumnoBean.validaTalla}"></h:inputText> </td>
+</tr>
+
+<tr>
+	<th>Rendimiento Académico: </th>
+	<td>
+	<h:selectOneMenu   id="rendAcad" validator="#{AlumnoBean.validaRendAcad}" value="#{AlumnoBean.rendAcademico.idRendAcad}" var="cboRendAcad" class="ui-selectonemenu-label ui-inputfield ui-corner-all">
+				<f:selectItem itemValue="-1" itemLabel="-Seleccionar Rendimiento Académico-" />
+            	<f:selectItems value="#{AlumnoBean.listaRendAcademico}" var="rendAcads" itemValue="#{rendAcads.idRendAcad}" itemLabel="#{rendAcads.descRendAcad}"  />
+	</h:selectOneMenu>
+	
+	</td>
+</tr>
+
+<tr>
+	<th>Aula: </th>
+	<td>
+	<h:selectOneMenu  id="aula" validator="#{AlumnoBean.validaAula}"  value="#{AlumnoBean.aula.idAula}" var="cboAula" class="ui-selectonemenu-label ui-inputfield ui-corner-all">
+				<f:selectItem itemValue="-1" itemLabel="-Seleccionar Aula-" />
+            	<f:selectItems value="#{AlumnoBean.listaAula}" var="aulas" itemValue="#{aulas.idAula}" itemLabel="#{aulas.descAula}"  />
+	</h:selectOneMenu>
+	
+	</td>
+</tr>
+
+<tr>
+	<th>Sexo: </th>
+	<td>
+	<h:selectOneMenu   id="sexo" validator="#{AlumnoBean.validaSexo}" value="#{AlumnoBean.sexo.idSexo}" var="cboSexo" class="ui-selectonemenu-label ui-inputfield ui-corner-all">
+				<f:selectItem itemValue="-1" itemLabel="-Seleccionar Sexo-" />
+            	<f:selectItems value="#{AlumnoBean.listaSexo}" var="sexos" itemValue="#{sexos.idSexo}" itemLabel="#{sexos.descSexo}"  />
+	</h:selectOneMenu>
+	
+	</td>
+</tr>
+
+<tr>
+	<th>Fecha de Registro: </th>
+	<td>
+	<p:calendar   id="fecha" validator="#{AlumnoBean.validaFecha}" value="#{AlumnoBean.fechaRegistro}" mode="popup"
+						popupIconOnly="true" showOn="button" pattern="dd/MM/yyyy">
+		</p:calendar>
+	</td>
+</tr>
+<tr>
+	<td colspan="2">
+		<p:commandButton value="Agregar" update="@form"
+				actionListener="#{AlumnoBean.insertar}" action="PRINCIPAL"
+				icon="ui-icon-disk" styleClass="ui-priority-primary"/>
+		<p:commandButton value="Limpiar" update="@form"
+				actionListener="#{AlumnoBean.limpiar}" 
+				styleClass="ui-priority-primary"/>
+	</td>
+</tr>
+<tr>
+<td colspan="2">
+<p:messages for="idalumno"></p:messages>
+<p:messages for="nombre"></p:messages>
+<p:messages for="edad"></p:messages>
+<p:messages for="talla"></p:messages>
+<p:messages for="rendAcad"></p:messages>
+<p:messages for="aula"></p:messages>
+<p:messages for="sexo"></p:messages>
+<p:messages for="fecha"></p:messages>
+
+</td>
+</tr>
+</table>
+</h:form>
+<h:form>
+<h:commandLink value="Volver al Inicio" action="PRINCIPAL"></h:commandLink>
+<br/>
+<h:commandLink value="Buscar" action="BUSCAR"></h:commandLink>
+</h:form>
+</h:body>
+</html>

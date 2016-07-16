@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head><title>Buscar</title></h:head>
+
+
+<h:body>
+
+<h1>Buscar Alumnos</h1>
+
+<h:form>
+<table border="1" align="center" style="border-collapse:collapse;">
+<tr><th colspan="4" style="padding:10px;">BÚSQUEDA DE ALUMNOS</th></tr>
+<tr>
+<td colspan="2">
+
+<table>
+<tr>
+	<td colspan="2">
+		<p:selectOneRadio id="customRadio" value="#{AlumnoBean.opcionSeleccionada}" 
+		layout="pageDirection">
+			<f:selectItem itemLabel="Por ID" itemValue="ID" /> 
+			<f:selectItem itemLabel="Por sexo" itemValue="SEXO" />
+		</p:selectOneRadio>
+	</td>
+</tr>
+</table>
+</td>
+
+<td>
+<table>
+	<tr>
+		<td>
+			<h:inputText value="#{AlumnoBean.idAlumno}"></h:inputText>
+		</td>
+	</tr>
+	<tr>
+		<td>
+				<h:selectOneMenu value="#{AlumnoBean.sexo.idSexo}" var="cboSexo" class="ui-selectonemenu-label ui-inputfield ui-corner-all">
+					<f:selectItem itemValue="-1" itemLabel="-Seleccionar Sexo-" />
+            		<f:selectItems value="#{AlumnoBean.listaSexo}" var="sexos" itemValue="#{sexos.idSexo}" itemLabel="#{sexos.descSexo}"  />
+				</h:selectOneMenu>
+		</td>
+	</tr>
+</table>
+</td>
+<td>
+<h:commandButton actionListener="#{AlumnoBean.buscarAlumno}" action="BUSCAR" value="Buscar"></h:commandButton>
+</td>
+</tr>
+<tr>
+<td colspan="4">
+
+	<p:dataTable  rows="5" var="alumnos" value="#{AlumnoBean.listaAlumno}" border="2" paginator="true" >
+			<f:facet name="header">
+				<h:outputText value="Lista de Alumnos"/>
+			</f:facet>
+			
+			<p:column>
+				<f:facet name="header"><h:outputText value="ID"/></f:facet>
+				<h:outputText value="#{alumnos.idAlumno}"></h:outputText>
+			</p:column>
+			
+			<p:column>
+				<f:facet name="header"><h:outputText value="ALUMNO"/></f:facet>
+				<h:outputText value="#{alumnos.nombres}"></h:outputText>
+			</p:column>			
+				
+			<p:column>
+				<f:facet name="header"><h:outputText value="EDAD"/></f:facet>
+				<h:outputText value="#{alumnos.edad}" ></h:outputText>
+			</p:column>
+			
+			<p:column>
+				<f:facet name="header"><h:outputText value="EDAD"/></f:facet>
+				<h:outputText value="#{alumnos.talla}" ></h:outputText>
+			</p:column>
+			
+			<p:column>
+				<f:facet name="header"><h:outputText value="REND. ACAD."/></f:facet>
+				<h:outputText value="#{alumnos.rendAcademico.descRendAcad} [#{alumnos.rendAcademico.idRendAcad}]" ></h:outputText>
+			</p:column>
+			
+			<p:column>
+				<f:facet name="header"><h:outputText value="AULA"/></f:facet>
+				<h:outputText value="#{alumnos.aula.descAula} [#{alumnos.aula.idAula}]" ></h:outputText>
+			</p:column>
+			
+			<p:column>
+				<f:facet name="header"><h:outputText value="SEXO"/></f:facet>
+				<h:outputText value="#{alumnos.sexo.descSexo} [#{alumnos.sexo.idSexo}]" ></h:outputText>
+			</p:column>
+			
+			<p:column>
+				<f:facet name="header"><h:outputText value="FECHA"/></f:facet>
+				<h:outputText value="#{alumnos.fechaRegistro}" ></h:outputText>
+			</p:column>
+		
+			
+			
+			<p:column>
+				<f:facet name="header"><h:outputText value="Acción"/></f:facet>
+				
+				<p:commandLink value="Eliminar" actionListener="#{AlumnoBean.seleccionar_fila}" onclick="PF('confirmar').show();" >
+					<f:attribute name="attr_idAlumno" value="#{alumnos.idAlumno}"></f:attribute>
+				</p:commandLink>
+			
+				<p:confirmDialog 
+					message="¿Esta seguro de eliminar?" 
+					header="Cuadro de confirmacion" 
+					severity="alert" 
+					widgetVar="confirmar">					
+						<p:commandButton
+							value="SI"
+							ajax="true"
+							update="@form"
+							actionListener="#{AlumnoBean.eliminar}"  
+							onclick="PF('confirmar').hide();" >
+							</p:commandButton>
+							
+																
+						<p:commandButton 
+							value="NO" 
+							onclick="PF('confirmar').hide();" 
+							type="button" />
+				</p:confirmDialog>
+				
+				
+			</p:column>
+			
+			<f:facet name="footer">
+				<h:outputText value="Existen #{AlumnoBean.listaAlumno_size} registros"/>
+			</f:facet>
+	</p:dataTable>
+</td>
+</tr>
+</table>
+
+
+</h:form>
+
+<h:form>
+<h:commandLink action="PRINCIPAL" value="Regresar al principal"></h:commandLink>
+<br/>
+<h:commandLink value="Insertar" action="INSERTAR"></h:commandLink>
+</h:form>
+
+
+
+</h:body>
+</html>
